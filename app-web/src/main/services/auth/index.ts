@@ -31,12 +31,24 @@ export function mockLogin(server: Server): void {
     const sAccessToken = jwt.sign(accessToken, 'secret', { algorithm: 'HS256' });
     const sRefreshToken = jwt.sign(refreshToken, 'secret', { algorithm: 'HS256' });
     server.post('/login', (schema: Schema<AnyRegistry>, request: Request) => {
-        const input: LoginInput = JSON.parse(request.requestBody);
-        if (input.username === 'user@mail.com' && input.password === 'userpass') {
-            return new Response(200, {}, {
-                accessToken: sAccessToken,
-                refreshToken: sRefreshToken,
-            } as LoginResult);
+        const params = new URLSearchParams(request.requestBody);
+        if (params.has('username') && params.has('password')) {
+            const input: LoginInput = {
+                username: params.get('username') as string,
+                password: params.get('password') as string,
+            };
+            if (input.username === 'user@mail.com' && input.password === 'userpass') {
+                return new Response(
+                    200,
+                    {
+                        'Content-Type': 'application/json',
+                    },
+                    {
+                        accessToken: sAccessToken,
+                        refreshToken: sRefreshToken,
+                    } as LoginResult
+                );
+            }
         }
         return new Response(400, {}, {});
     });

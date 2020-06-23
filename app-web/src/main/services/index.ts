@@ -142,8 +142,11 @@ const observableRequest = <T extends Record<string, any>>(
         method,
         url: `${baseURL}${url}`,
         body,
+        responseType: 'json',
         headers: makeHeaders(accept, contentType),
-    }).pipe(map<AjaxResponse, T>(res => res.response));
+    }).pipe(
+        map<AjaxResponse, T>(res => (typeof res.response === 'string' ? JSON.parse(res.response) : res.response))
+    );
 
 export const postJson = <T extends Record<string, any>>(url: string, body: Record<string, any>): Observable<T> =>
     observableRequest('POST', url, 'application/json', 'application/json', body);
