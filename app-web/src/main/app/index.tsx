@@ -1,9 +1,12 @@
 import React, { ReactElement } from 'react';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from '@material-ui/core';
 import store from './store';
+import theme from './theme';
 import ServicesConfigurator from './ServicesConfigurator';
 import Persistor from './Persistor';
 import Router from './Router';
+
 import './styles.less';
 
 export default function App(): ReactElement {
@@ -11,7 +14,9 @@ export default function App(): ReactElement {
         <Provider store={store}>
             <ServicesConfigurator />
             <Persistor>
-                <Router />
+                <ThemeProvider theme={theme}>
+                    <Router />
+                </ThemeProvider>
             </Persistor>
         </Provider>
     );

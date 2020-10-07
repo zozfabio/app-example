@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import MainLayout from '../../components/MainLayout';
+import MainLayout from '../../components/MuiMainLayout';
 import ExampleContents from '../../components/ExampleContents';
 import LayoutConfigurer from '../../components/LayoutConfigurer';
 import { login } from '../Auth/routes';
