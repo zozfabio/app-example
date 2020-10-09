@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import SiteLayout from '../../components/SiteLayout';
+import SiteLayout from '../../components/MuiSiteLayout';
 import LayoutConfigurer from '../../components/LayoutConfigurer';
 import { home } from '../Main/routes';
 import { Props } from './types';
