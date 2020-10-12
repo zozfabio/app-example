@@ -1,45 +1,51 @@
 import React, { ReactElement } from 'react';
-import { Alert, Button, Card, Col, Form, Input, Row } from 'antd';
-import { Rule } from 'antd/lib/form';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import clsx from 'clsx';
+import { Avatar, Button, Grid, Typography } from '@material-ui/core';
+import { LockOutlined } from '@material-ui/icons';
+import { Alert } from '@material-ui/lab';
+import { FormikValues } from 'formik';
+import Form, { Validations } from '../../../components/Form';
+import UsernameField from '../../../components/UsernameField';
+import PasswordField from '../../../components/PasswordField';
 import { LoginInput } from '../../../services/auth/types';
 import { Props } from './types';
-import './styles.css';
+import useStyles from './styles';
 
-const inicialValues: LoginInput = {
+const values: LoginInput = {
     username: 'user@mail.com',
     password: 'userpass',
 };
 
-const rules = {
-    username: [{ required: true, message: 'Por favor, informe o E-Mail!' }] as Rule[],
-    password: [{ required: true, message: 'Por favor, informe a Senha!' }] as Rule[],
-};
+const validation = Validations.object({
+    username: Validations.string().max(20, 'Must be 20 characters or less').required('Required'),
+    password: Validations.string().max(20, 'Must be 20 characters or less').required('Required'),
+});
 
 export default function LoginPage({ login, error }: Props): ReactElement {
-    const onSubmit: any = (input: LoginInput): void => {
-        login(input);
-    };
+    const classes = useStyles();
+    const onSubmit = (input: FormikValues) => login(input as LoginInput);
     return (
-        <Row id="component-auth-login-page" justify="center">
-            <Col xs={20} sm={16} md={12} lg={8} xl={6}>
-                <Card title="Entrar">
-                    {error && <Alert message={error.message} type="error" showIcon />}
-                    <Form initialValues={inicialValues} onFinish={onSubmit}>
-                        <Form.Item name="username" rules={rules.username}>
-                            <Input prefix={<UserOutlined />} placeholder="E-Mail" />
-                        </Form.Item>
-                        <Form.Item name="password" rules={rules.password}>
-                            <Input prefix={<LockOutlined />} type="password" placeholder="Senha" />
-                        </Form.Item>
-                        <Form.Item>
-                            <Button type="primary" htmlType="submit">
-                                Entrar
-                            </Button>
-                        </Form.Item>
-                    </Form>
-                </Card>
-            </Col>
-        </Row>
+        <Form initialValues={values} validationSchema={validation} onSubmit={onSubmit}>
+            <Grid container direction="column" justify="center" alignItems="center">
+                <Avatar>
+                    <LockOutlined />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Login
+                </Typography>
+                <Grid item xs={12} sm={10} md={8} lg={6} xl={4}>
+                    {error && (
+                        <Alert severity="error" className={clsx(classes.alert, classes.fullWidth)}>
+                            {error.message}
+                        </Alert>
+                    )}
+                    <UsernameField name="username" label="E-Mail" />
+                    <PasswordField name="password" label="Password" />
+                    <Button variant="contained" color="primary" type="submit">
+                        Login
+                    </Button>
+                </Grid>
+            </Grid>
+        </Form>
     );
 }

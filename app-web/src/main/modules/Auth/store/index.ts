@@ -8,13 +8,11 @@ import { createSelector } from 'reselect';
 import { AppState } from '../../../app/store/types';
 import { AccessToken } from '../../../services/auth/types';
 import { PayloadAction } from 'typesafe-actions/dist/type-helpers';
-import { isTokenExpired } from '../../../services/auth/helpers';
+import { isTokenExpired, readAccessToken } from '../../../services/auth/helpers';
 
 const initialState: AuthState = {
     accessToken: undefined,
     refreshToken: undefined,
-    user: undefined,
-    error: undefined,
 };
 
 const authReducer: Reducer<AuthState, { type: string; payload: AuthState }> = createReducer(initialState)
@@ -40,11 +38,11 @@ export default persistReducer(
 );
 
 export const isAuthenticated = createSelector(
-    (state: AppState): AccessToken | undefined => state.auth.accessToken,
-    (accessToken: AccessToken | undefined): boolean => (accessToken ? !isTokenExpired(accessToken) : false)
+    (state: AppState): AccessToken | null => (state.auth.accessToken ? readAccessToken(state.auth.accessToken) : null),
+    (accessToken: AccessToken | null): boolean => (accessToken ? !isTokenExpired(accessToken) : false)
 );
-export const getRawToken = createSelector(
-    (state: AppState): string | undefined => state.auth.rawAccessToken,
+export const getRawAccessToken = createSelector(
+    (state: AppState): string | undefined => state.auth.accessToken,
     (accessToken: string | undefined): string | undefined => accessToken
 );
 export const getError = createSelector(
