@@ -15,6 +15,7 @@ export default function Header({ maximized }: Props): ReactElement {
     return (
         <AppBar
             position="fixed"
+            elevation={1}
             className={clsx(classes.appBar, {
                 [classes.appBarShift]: !maximized,
             })}

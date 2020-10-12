@@ -1,4 +1,4 @@
-import { LayoutState } from '../../LayoutConfigurer/store/types';
+import { LayoutState } from '../../Layout/store/types';
 
 export type StateProps = Pick<LayoutState, 'breadcrumb'>;
 

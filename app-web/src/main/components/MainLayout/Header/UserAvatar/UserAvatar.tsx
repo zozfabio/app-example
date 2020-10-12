@@ -1,17 +1,42 @@
 import React, { ReactElement } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Button, Menu, MenuItem } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
+import { home } from '../../../../modules/Site/routes';
+import { logout } from '../../../../modules/Auth/routes';
 
 export default function UserAvatar(): ReactElement {
+    const history = useHistory();
+
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget);
+    const handleClose = () => setAnchorEl(null);
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const itens = [];
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    itens.push(
+        <MenuItem
+            key="site"
+            onClick={() => {
+                handleClose();
+                history.push(home.path);
+            }}
+        >
+            Site
+        </MenuItem>
+    );
+
+    itens.push(
+        <MenuItem
+            key="logout"
+            onClick={() => {
+                handleClose();
+                history.push(logout.path);
+            }}
+        >
+            Logout
+        </MenuItem>
+    );
 
     return (
         <div>
@@ -19,9 +44,7 @@ export default function UserAvatar(): ReactElement {
                 <AccountCircle />
             </Button>
             <Menu id="user-avatar-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                {itens}
             </Menu>
         </div>
     );

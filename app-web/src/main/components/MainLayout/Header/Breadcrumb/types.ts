@@ -1,4 +1,4 @@
-import { LayoutBreadcrumb } from '../../../LayoutConfigurer/store/types';
+import { LayoutBreadcrumb } from '../../../Layout/store/types';
 
 export interface StateProps {
     breadcrumb: LayoutBreadcrumb[];

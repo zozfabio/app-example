@@ -2,6 +2,12 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 export default makeStyles((theme: Theme) =>
     createStyles({
+        paper: {
+            padding: theme.spacing(2, 0, 5, 0),
+        },
+        toolbarLeftSpace: {
+            flexGrow: 1,
+        },
         fullWidth: {
             width: '100%',
         },

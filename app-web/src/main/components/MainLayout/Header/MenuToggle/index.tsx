@@ -1,9 +1,9 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../app/store/types';
-import { LayoutState } from '../../../LayoutConfigurer/store/types';
-import { getMaximized } from '../../../LayoutConfigurer/store';
-import { setMaximized } from '../../../LayoutConfigurer/store/actions';
+import { LayoutState } from '../../../Layout/store/types';
+import { getMaximized } from '../../../Layout/store';
+import { setMaximized } from '../../../Layout/store/actions';
 import { DispatchProps } from './types';
 import MenuToggle from './MenuToggle';
 

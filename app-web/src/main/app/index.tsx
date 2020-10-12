@@ -7,8 +7,6 @@ import ServicesConfigurator from './ServicesConfigurator';
 import Persistor from './Persistor';
 import Router from './Router';
 
-import './styles.less';
-
 export default function App(): ReactElement {
     return (
         <Provider store={store}>

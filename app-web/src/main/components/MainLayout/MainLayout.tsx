@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect } from 'react';
-import { Box, useMediaQuery } from '@material-ui/core';
+import { Paper, useMediaQuery } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import clsx from 'clsx';
@@ -30,9 +30,7 @@ export default function MainLayout({ children, maximized, setMaximized }: Props)
             >
                 <div className={siderClasses.drawerHeader} />
                 <div className={siderClasses.drawerHeader} />
-                <Box border={1} borderColor="grey.300">
-                    {children}
-                </Box>
+                <Paper>{children}</Paper>
             </main>
         </div>
     );

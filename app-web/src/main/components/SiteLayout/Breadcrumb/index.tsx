@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { AppState } from '../../../app/store/types';
-import { getBreadcrumb } from '../../LayoutConfigurer/store';
+import { getBreadcrumb } from '../../Layout/store';
 import { StateProps } from './types';
 import Breadcrumb from './Breadcrumb';
 

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Route } from 'react-router-dom';
-import SiteLayout from '../../components/MuiSiteLayout';
-import LayoutConfigurer from '../../components/LayoutConfigurer';
+import SiteLayout from '../../components/SiteLayout';
+import Layout from '../../components/Layout';
 import ExampleContents from '../../components/ExampleContents';
 import { home } from './routes';
 
@@ -11,9 +11,9 @@ export default function Site(): ReactElement {
             <Route
                 {...home}
                 render={() => (
-                    <LayoutConfigurer breadcrumb={[]}>
+                    <Layout breadcrumb={[]}>
                         <ExampleContents />
-                    </LayoutConfigurer>
+                    </Layout>
                 )}
             />
         </SiteLayout>

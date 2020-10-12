@@ -8,7 +8,7 @@ export default makeStyles((theme: Theme) =>
         },
         content: {
             flexGrow: 1,
-            padding: theme.spacing(3),
+            padding: theme.spacing(1),
             background: theme.palette.background.default,
             transition: theme.transitions.create('margin', {
                 easing: theme.transitions.easing.sharp,

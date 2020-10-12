@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Breadcrumbs, Link } from '@material-ui/core';
 import { NavigateNext } from '@material-ui/icons';
 import { home } from '../../../modules/Site/routes';
-import { LayoutBreadcrumb } from '../../LayoutConfigurer/store/types';
+import { LayoutBreadcrumb } from '../../Layout/store/types';
 import { Props } from './types';
 
 export default function Breadcrumb({ breadcrumb }: Props): ReactElement {

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import SiteLayout from '../../components/MuiSiteLayout';
-import LayoutConfigurer from '../../components/LayoutConfigurer';
+import SiteLayout from '../../components/SiteLayout';
+import Layout from '../../components/Layout';
 import { home } from '../Main/routes';
 import { Props } from './types';
 import { login, logout } from './routes';
@@ -17,9 +17,9 @@ export default function Auth({ isAuthenticated }: Props): ReactElement {
                     <Route
                         {...login}
                         render={() => (
-                            <LayoutConfigurer breadcrumb={[{ title: 'Login', path: login.path }]}>
+                            <Layout breadcrumb={[{ title: 'Login', path: login.path }]}>
                                 <LoginPage />
-                            </LayoutConfigurer>
+                            </Layout>
                         )}
                     />
                 </SiteLayout>

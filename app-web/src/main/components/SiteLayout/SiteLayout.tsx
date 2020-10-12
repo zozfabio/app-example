@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Container, CssBaseline, Toolbar } from '@material-ui/core';
+import { Container, CssBaseline, Paper, Toolbar } from '@material-ui/core';
 import { Props } from './types';
 import Header from './Header';
 import Breadcrumb from './Breadcrumb';
@@ -16,7 +16,7 @@ export default function SiteLayout({ children }: Props): ReactElement {
                 <Toolbar>
                     <Breadcrumb />
                 </Toolbar>
-                {children}
+                <Paper>{children}</Paper>
             </Container>
         </React.Fragment>
     );
