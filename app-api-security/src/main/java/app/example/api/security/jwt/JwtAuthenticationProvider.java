@@ -20,9 +20,23 @@ public class JwtAuthenticationProvider extends DaoAuthenticationProvider {
         setPasswordEncoder(passwordEncoder);
     }
 
-    protected Authentication createSuccessAuthentication(Object principal, Authentication authentication, UserDetails user) {
-        if (user instanceof User) {
-            return ((User) user).authenticated(((User) user).getProfiles());
+    protected Authentication createSuccessAuthentication(
+        Object principal,
+        Authentication authentication,
+        UserDetails userDetails
+    ) {
+        if (userDetails instanceof User) {
+            var user = (User) userDetails;
+            var claims = JwtWebSecurityUtils.generateAccessToken(user);
+            var accessToken = JwtWebSecurityUtils.generateAccessToken(claims);
+
+            return JwtAuthentication.of(
+                claims.getSubject(),
+                JwtGrantType.ACCESS,
+                user.getProfiles(),
+                accessToken,
+                claims
+            );
         }
 
         log.warn("UserDetails is not a valid user for jwt authentication!");

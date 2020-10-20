@@ -1,4 +1,4 @@
-package app.example.api.security;
+package app.example.api.security.jwt;
 
 import java.util.Arrays;
 import lombok.Getter;
@@ -6,13 +6,13 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-public enum GrantType {
+public enum JwtGrantType {
 
     ACCESS("AC"), REFRESH("RF"), NULL("NL");
 
     private final String shortName;
 
-    public static GrantType of(String shortName) {
+    public static JwtGrantType of(String shortName) {
         return Arrays.stream(values())
             .filter(p -> shortName.equalsIgnoreCase(p.shortName))
             .findFirst().orElse(NULL);

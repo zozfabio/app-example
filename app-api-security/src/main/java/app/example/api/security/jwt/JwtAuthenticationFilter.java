@@ -14,13 +14,19 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public JwtAuthenticationFilter() {
         setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/login", "POST"));
         setAllowSessionCreation(false);
+        setPostOnly(true);
         setUsernameParameter("username");
         setPasswordParameter("password");
         setAuthenticationSuccessHandler(new JwtAuthenticationSuccessHandler());
         setAuthenticationFailureHandler(new JwtAuthenticationFailureHandler());
     }
 
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+    protected void successfulAuthentication(
+        HttpServletRequest request,
+        HttpServletResponse response,
+        FilterChain chain,
+        Authentication authResult
+    ) throws IOException, ServletException {
         super.successfulAuthentication(request, response, chain, authResult);
         chain.doFilter(request, response);
     }

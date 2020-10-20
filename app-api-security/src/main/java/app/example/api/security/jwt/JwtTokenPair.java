@@ -1,4 +1,4 @@
-package app.example.api.security;
+package app.example.api.security.jwt;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -13,7 +13,7 @@ import static lombok.AccessLevel.PROTECTED;
 @Getter
 @EqualsAndHashCode
 @ToString
-public class TokenPair {
+public class JwtTokenPair {
 
     private String accessToken;
 

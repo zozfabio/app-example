@@ -18,7 +18,7 @@ public class JwtSecurityContextRepository implements SecurityContextRepository {
         SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
 
         JwtWebSecurityUtils.getToken(holder.getRequest())
-            .flatMap(JwtWebSecurityUtils::parseToken)
+            .map(JwtWebSecurityUtils::authenticate)
             .ifPresent(securityContext::setAuthentication);
 
         return securityContext;
