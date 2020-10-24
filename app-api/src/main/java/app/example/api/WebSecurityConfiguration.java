@@ -1,6 +1,6 @@
 package app.example.api;
 
-import app.example.api.domain.user.UserRepository;
+import app.example.api.domain.user.UserService;
 import app.example.api.security.Profile;
 import app.example.api.security.User;
 import app.example.api.security.jwt.JwtAuthenticationAccessDecisionVoter;
@@ -9,6 +9,7 @@ import app.example.api.security.jwt.JwtAuthenticationFilter;
 import app.example.api.security.jwt.JwtAuthenticationProvider;
 import app.example.api.security.jwt.JwtSecurityContextRepository;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,7 +39,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private AccessDecisionManager accessDecisionManager;
 
     @Autowired
-    private UserRepository users;
+    private UserService users;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -57,21 +58,22 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and().securityContext().securityContextRepository(new JwtSecurityContextRepository())
             .and().sessionManagement().sessionCreationPolicy(NEVER)
             .and().requestCache().requestCache(new NullRequestCache())
-            .and().headers().frameOptions().deny()
+            .and().headers().frameOptions().sameOrigin()
             .and().csrf().disable()
             .addFilterAt(filter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     private UsernamePasswordAuthenticationFilter filter() throws Exception {
-        JwtAuthenticationFilter filter = new JwtAuthenticationFilter();
+        var filter = new JwtAuthenticationFilter();
         filter.setAuthenticationManager(authenticationManager());
         return filter;
     }
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return email -> users.findByEmail(email)
-            .map(u -> User.of(u.getEmail(), u.getName(), u.getPassword(), u.getProfiles()))
+        return email -> users.findOneByEmail(email)
+            .map(u -> User.of(u.getEmail(), u.getName(), u.getPassword(), Set.copyOf(u.getProfiles())))
+            .blockOptional()
             .orElseThrow(() -> new UsernameNotFoundException("User not found!"));
     }
 

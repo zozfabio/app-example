@@ -1,47 +1,46 @@
 package app.example.api.domain.user;
 
 import app.example.api.security.Profile;
+import java.util.List;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.With;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.relational.core.mapping.Table;
 
-import static javax.persistence.EnumType.STRING;
-import static javax.persistence.FetchType.EAGER;
-import static lombok.AccessLevel.PRIVATE;
-import static lombok.AccessLevel.PROTECTED;
-
-@Entity
-@Table(name = "users")
-@NoArgsConstructor(access = PROTECTED)
-@AllArgsConstructor(access = PRIVATE)
+@Table("users")
+@AllArgsConstructor(staticName = "of")
 @Getter
 @EqualsAndHashCode(of = {"id"})
 @ToString
 public class User {
 
     @Id
-    @GeneratedValue
-    private Long id;
+    @With
+    private final UUID id;
 
-    @Column(unique = true)
-    private String email;
+    private String email, name, password;
 
-    private String name;
+    @Transient
+    @With
+    private Set<Profile> profiles;
 
-    private String password;
+    @PersistenceConstructor
+    public User(UUID id, String email, String name, String password) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.profiles = Set.of();
+    }
 
-    @ElementCollection(fetch = EAGER)
-    @Enumerated(STRING)
-    @Column(name = "profile")
-    private Set<Profile> profiles = Set.of();
+    public List<Profile> getProfiles() {
+        return List.copyOf(profiles);
+    }
 }

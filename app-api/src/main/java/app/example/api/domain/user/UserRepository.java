@@ -1,9 +1,10 @@
 package app.example.api.domain.user;
 
-import java.util.Optional;
-import org.springframework.data.repository.CrudRepository;
+import java.util.UUID;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import reactor.core.publisher.Mono;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends ReactiveCrudRepository<User, UUID> {
 
-    Optional<User> findByEmail(String email);
+    Mono<User> findByEmail(String email);
 }

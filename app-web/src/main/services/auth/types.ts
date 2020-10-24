@@ -13,7 +13,7 @@ export interface AccessToken {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function isAccessToken(obj: any): obj is AccessToken {
-    return 'sub' in obj && 'iat' in obj && 'exp' in obj && 'fln' in obj && 'prf' in obj;
+    return obj != null && 'sub' in obj && 'iat' in obj && 'exp' in obj && 'fln' in obj && 'prf' in obj;
 }
 
 export interface RefreshToken {
@@ -24,7 +24,7 @@ export interface RefreshToken {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function isRefreshToken(obj: any): obj is RefreshToken {
-    return 'nbf' in obj && 'iat' in obj && 'exp' in obj;
+    return obj != null && 'nbf' in obj && 'iat' in obj && 'exp' in obj;
 }
 
 export interface LoginInput extends Record<string, string> {
@@ -39,5 +39,5 @@ export interface LoginResult extends Record<string, string> {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function isLoginResult(obj: any): obj is LoginResult {
-    return 'accessToken' in obj && 'refreshToken' in obj;
+    return obj != null && 'accessToken' in obj && 'refreshToken' in obj;
 }
