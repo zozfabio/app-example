@@ -1,9 +1,11 @@
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import React, { ReactElement } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, Menu, MenuItem } from '@material-ui/core';
-import { AccountCircle } from '@material-ui/icons';
-import { home } from '../../../../modules/Site/routes';
 import { logout } from '../../../../modules/Auth/routes';
+import { home } from '../../../../modules/Site/routes';
 
 export default function UserAvatar(): ReactElement {
     const history = useHistory();

@@ -1,13 +1,9 @@
-import { LayoutBreadcrumb } from './store/types';
 import { ReactElement } from 'react';
+import { LayoutBreadcrumb } from './Provider/types';
 
 export interface OwnProps {
     children?: ReactElement;
     breadcrumb?: LayoutBreadcrumb[];
 }
 
-export interface DispatchProps {
-    setBreadcrumb: (breadcrumb: LayoutBreadcrumb[]) => void;
-}
-
-export type Props = OwnProps & DispatchProps;
+export type Props = OwnProps;

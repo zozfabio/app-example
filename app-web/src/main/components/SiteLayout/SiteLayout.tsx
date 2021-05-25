@@ -1,15 +1,14 @@
+import { Container, Paper, Toolbar } from '@material-ui/core';
 import React, { ReactElement } from 'react';
-import { Container, CssBaseline, Paper, Toolbar } from '@material-ui/core';
-import { Props } from './types';
-import Header from './Header';
 import Breadcrumb from './Breadcrumb';
+import Header from './Header';
 import useHeaderStyles from './Header/styles';
+import { Props } from './types';
 
 export default function SiteLayout({ children }: Props): ReactElement {
     const headerClasses = useHeaderStyles();
     return (
         <React.Fragment>
-            <CssBaseline />
             <Header />
             <div className={headerClasses.offset} />
             <Container>

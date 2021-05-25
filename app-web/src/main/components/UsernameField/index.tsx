@@ -1,3 +1,1 @@
-import UsernameField from './UsernameField';
-
-export default UsernameField;
+export { default } from './UsernameField';

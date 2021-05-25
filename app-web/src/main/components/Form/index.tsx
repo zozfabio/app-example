@@ -1,5 +1,4 @@
-import Form from './Form';
 import * as Yup from 'yup';
 
-export default Form;
+export { default } from './Form';
 export const Validations = Yup;

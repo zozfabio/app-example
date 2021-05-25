@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import { Route } from 'react-router-dom';
-import SiteLayout from '../../components/SiteLayout';
-import Layout from '../../components/Layout';
 import ExampleContents from '../../components/ExampleContents';
+import Layout from '../../components/Layout';
+import SiteLayout from '../../components/SiteLayout';
 import { home } from './routes';
 
 export default function Site(): ReactElement {

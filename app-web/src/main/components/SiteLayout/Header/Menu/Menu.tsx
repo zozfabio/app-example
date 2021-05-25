@@ -1,11 +1,12 @@
+import { Button, Toolbar } from '@material-ui/core';
 import React, { ReactElement } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, Toolbar } from '@material-ui/core';
-import { home } from '../../../../modules/Main/routes';
+import { useAuthContext } from '../../../../modules/Auth';
 import { login, logout } from '../../../../modules/Auth/routes';
-import { Props } from './types';
+import { home } from '../../../../modules/Main/routes';
 
-export default function Menu({ isAuthenticated }: Props): ReactElement {
+export default function Menu(): ReactElement {
+    const { isAuthenticated } = useAuthContext();
     const history = useHistory();
     const itens = [];
     if (isAuthenticated) {

@@ -1,14 +1,15 @@
 import React, { ReactElement } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import SiteLayout from '../../components/SiteLayout';
 import Layout from '../../components/Layout';
+import SiteLayout from '../../components/SiteLayout';
 import { home } from '../Main/routes';
-import { Props } from './types';
-import { login, logout } from './routes';
 import LoginPage from './LoginPage';
 import LogoutHandler from './LogoutHandler';
+import { useAuthContext } from './Provider/hooks';
+import { login, logout } from './routes';
 
-export default function Auth({ isAuthenticated }: Props): ReactElement {
+export default function Auth(): ReactElement {
+    const { isAuthenticated } = useAuthContext();
     return (
         <Switch>
             <Route {...logout} component={LogoutHandler} />

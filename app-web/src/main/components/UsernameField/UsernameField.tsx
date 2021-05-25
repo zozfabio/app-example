@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react';
 import { TextField } from '@material-ui/core';
 import { useField } from 'formik';
+import React, { ReactElement } from 'react';
 import { Props } from './types';
 
 export default function UsernameField(props: Props): ReactElement {

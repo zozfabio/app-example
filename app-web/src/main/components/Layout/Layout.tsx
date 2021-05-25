@@ -1,7 +1,9 @@
-import React, { PropsWithChildren, ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
+import { useLayoutContext } from './Provider/hooks';
 import { Props } from './types';
 
-export default function Layout({ children, breadcrumb, setBreadcrumb }: PropsWithChildren<Props>): ReactElement {
+export default function Layout({ children, breadcrumb }: Props): ReactElement {
+    const { setBreadcrumb } = useLayoutContext();
     useEffect(() => {
         breadcrumb && setBreadcrumb(breadcrumb);
     }, [breadcrumb, setBreadcrumb]);

@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
 import { AppBar } from '@material-ui/core';
+import React, { ReactElement } from 'react';
 import Menu from './Menu';
 import useStyles from './styles';
 

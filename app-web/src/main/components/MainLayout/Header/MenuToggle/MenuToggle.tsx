@@ -1,24 +1,23 @@
-import React, { ReactElement } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import clsx from 'clsx';
-import { Props } from './types';
+import React, { ReactElement } from 'react';
+import { useLayoutContext } from '../../../Layout';
 import useStyles from './styles';
 
-export default function MenuToggle({ maximized, setMaximized }: Props): ReactElement {
+export default function MenuToggle(): ReactElement {
     const classes = useStyles();
-
-    const handleDrawerOpen = () => {
-        setMaximized(false);
-    };
+    const { toggleMenuExpanded, menuExpanded } = useLayoutContext();
 
     return (
         <IconButton
             color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            aria-label="Abrir Menu"
+            onClick={toggleMenuExpanded}
             edge="start"
-            className={clsx(classes.menuButton, !maximized && classes.hide)}
+            className={clsx(classes.menuButton, {
+                [classes.hide]: menuExpanded,
+            })}
         >
             <MenuIcon />
         </IconButton>

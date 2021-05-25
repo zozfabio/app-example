@@ -1,10 +1,11 @@
 import React, { ReactElement, useEffect } from 'react';
-import { Props } from './types';
-import { logout as logoutRoute } from '../routes';
-import { home } from '../../Site/routes';
 import { Redirect } from 'react-router-dom';
+import { home } from '../../Site/routes';
+import { useAuthContext } from '../Provider/hooks';
+import { logout as logoutRoute } from '../routes';
 
-export default function LogoutHandler({ logout }: Props): ReactElement {
+export default function LogoutHandler(): ReactElement {
+    const { logout } = useAuthContext();
     useEffect(() => {
         logout();
     }, [logout]);

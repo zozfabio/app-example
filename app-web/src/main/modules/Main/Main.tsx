@@ -1,16 +1,14 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import MainLayout from '../../components/MainLayout';
 import ExampleContents from '../../components/ExampleContents';
 import Layout from '../../components/Layout';
+import MainLayout from '../../components/MainLayout';
+import { useAuthContext } from '../Auth';
 import { login } from '../Auth/routes';
-import { Props } from './types';
 import { home, nav1, nav2 } from './routes';
 
-export default function Main({ isAuthenticated, getRoot }: Props): ReactElement {
-    useEffect(() => {
-        getRoot();
-    }, [getRoot]);
+export default function Main(): ReactElement {
+    const { isAuthenticated } = useAuthContext();
     return (
         <>
             {isAuthenticated ? (

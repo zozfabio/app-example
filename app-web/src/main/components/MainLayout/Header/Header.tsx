@@ -1,23 +1,24 @@
-import React, { ReactElement } from 'react';
-import clsx from 'clsx';
-import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
+import Divider from '@material-ui/core/Divider';
+import Toolbar from '@material-ui/core/Toolbar';
+import clsx from 'clsx';
+import React, { ReactElement } from 'react';
+import { useLayoutContext } from '../../Layout';
+import Breadcrumb from './Breadcrumb';
 import MenuToggle from './MenuToggle';
-import { Props } from './types';
 import useStyles from './styles';
 import UserAvatar from './UserAvatar';
-import Breadcrumb from './Breadcrumb';
-import Divider from '@material-ui/core/Divider';
 
-export default function Header({ maximized }: Props): ReactElement {
+export default function Header(): ReactElement {
     const classes = useStyles();
+    const { menuExpanded } = useLayoutContext();
 
     return (
         <AppBar
             position="fixed"
             elevation={1}
             className={clsx(classes.appBar, {
-                [classes.appBarShift]: !maximized,
+                [classes.appBarShift]: menuExpanded,
             })}
         >
             <Toolbar>

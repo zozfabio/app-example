@@ -1,9 +1,9 @@
 import React, { lazy, ReactElement, Suspense } from 'react';
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import SplashScreen from '../../components/SplashScreen';
-import { home as site } from '../../modules/Site/routes';
 import { login } from '../../modules/Auth/routes';
 import { home as main } from '../../modules/Main/routes';
+import { home as site } from '../../modules/Site/routes';
 
 const Site = lazy(() => import('../../modules/Site'));
 const Auth = lazy(() => import('../../modules/Auth'));

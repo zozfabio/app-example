@@ -1,14 +1,14 @@
-import React, { ReactElement } from 'react';
-import clsx from 'clsx';
 import { Avatar, Button, Grid, Toolbar, Typography } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
 import { Alert } from '@material-ui/lab';
+import clsx from 'clsx';
 import { FormikValues } from 'formik';
+import React, { ReactElement } from 'react';
 import Form, { Validations } from '../../../components/Form';
-import UsernameField from '../../../components/UsernameField';
 import PasswordField from '../../../components/PasswordField';
+import UsernameField from '../../../components/UsernameField';
 import { LoginInput } from '../../../services/auth/types';
-import { Props } from './types';
+import { useAuthContext } from '../Provider/hooks';
 import useStyles from './styles';
 
 const values: LoginInput = {
@@ -21,8 +21,9 @@ const validation = Validations.object({
     password: Validations.string().max(20, 'Must be 20 characters or less').required('Required'),
 });
 
-export default function LoginPage({ login, error }: Props): ReactElement {
+export default function LoginPage(): ReactElement {
     const classes = useStyles();
+    const { login, error } = useAuthContext();
     const onSubmit = (input: FormikValues) => login(input as LoginInput);
     return (
         <main className={classes.paper}>
