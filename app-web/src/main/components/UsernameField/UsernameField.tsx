@@ -1,4 +1,4 @@
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { useField } from 'formik';
 import React, { ReactElement } from 'react';
 import { Props } from './types';

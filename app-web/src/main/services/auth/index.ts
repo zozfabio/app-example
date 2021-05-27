@@ -6,12 +6,12 @@ import { AccessToken, LoginInput, LoginResult, RefreshToken } from './types';
 export function mockLogin(input: LoginInput): Observable<LoginResult> {
     const now = dayjs();
     const oneMInFuture = now.add(1, 'minute');
-    const twoMInFuture = now.add(2, 'minute');
+    const tenMInFuture = now.add(10, 'minute');
     const threeMInFuture = now.add(3, 'minute');
     const accessToken: AccessToken = {
         sub: 'user@mail.com',
         iat: now.unix(),
-        exp: twoMInFuture.unix(),
+        exp: tenMInFuture.unix(),
         fln: 'User Name',
         prf: ['DEVELOPER'],
     };

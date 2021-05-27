@@ -1,4 +1,4 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import { drawerWidth } from '../Sider/styles';
 
 export default makeStyles((theme: Theme) =>
@@ -7,6 +7,9 @@ export default makeStyles((theme: Theme) =>
             flexGrow: 1,
             background: theme.palette.common.white,
             color: theme.palette.common.black,
+            borderTop: 'none',
+            borderLeft: 'none',
+            borderRight: 'none',
             transition: theme.transitions.create(['margin', 'width'], {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.leavingScreen,

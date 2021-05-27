@@ -1,4 +1,8 @@
-import { Avatar, Button, Grid, Toolbar, Typography } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import { LockOutlined } from '@material-ui/icons';
 import { Alert } from '@material-ui/lab';
 import clsx from 'clsx';

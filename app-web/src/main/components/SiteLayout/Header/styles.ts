@@ -1,4 +1,4 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core';
 
 export default makeStyles((theme: Theme) =>
     createStyles({
@@ -6,6 +6,9 @@ export default makeStyles((theme: Theme) =>
         appBar: {
             background: theme.palette.common.white,
             color: theme.palette.common.black,
+            borderTop: 'none',
+            borderLeft: 'none',
+            borderRight: 'none',
         },
     })
 );

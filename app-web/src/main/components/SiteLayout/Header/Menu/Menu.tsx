@@ -1,4 +1,5 @@
-import { Button, Toolbar } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
 import React, { ReactElement } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../../../../modules/Auth';

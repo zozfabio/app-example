@@ -1,20 +1,28 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import { drawerWidth } from './Sider/styles';
 
 export default makeStyles((theme: Theme) =>
     createStyles({
-        root: {
-            display: 'flex',
-        },
         content: {
             flexGrow: 1,
-            padding: theme.spacing(1),
             background: theme.palette.background.default,
+            overflowY: 'scroll',
+            marginLeft: -drawerWidth,
+            marginTop: '57px',
+            marginRight: '0',
+            height: 'calc(100hv - 114px)',
+            [`@media (min-width:0px) and (orientation: landscape)`]: {
+                marginTop: '49px',
+                height: 'calc(100hv - 98px)',
+            },
+            [theme.breakpoints.up('sm')]: {
+                marginTop: '65px',
+                height: 'calc(100hv - 130px)',
+            },
             transition: theme.transitions.create('margin', {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.leavingScreen,
             }),
-            marginLeft: -drawerWidth,
         },
         contentShift: {
             transition: theme.transitions.create('margin', {

@@ -1,4 +1,5 @@
-import { Breadcrumbs, Link } from '@material-ui/core';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
 import { NavigateNext } from '@material-ui/icons';
 import React, { ReactElement } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
