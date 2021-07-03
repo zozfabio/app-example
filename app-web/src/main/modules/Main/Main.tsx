@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import ExampleContents from '../../components/ExampleContents';
-import Layout from '../../components/Layout';
-import MainLayout from '../../components/MainLayout';
-import { useAuthContext } from '../Auth';
+import Layout from '../../components/layouts/Layout';
+import MainLayout from '../../components/layouts/MainLayout';
+import ReactApp from '../../components/miscellaneous/ReactApp';
+import { useAuthContext } from '../../providers';
 import { login } from '../Auth/routes';
 import { home, nav1, nav2 } from './routes';
 
@@ -11,13 +11,13 @@ export default function Main(): ReactElement {
     const { isAuthenticated } = useAuthContext();
     return (
         <>
-            {isAuthenticated ? (
+            {isAuthenticated() ? (
                 <MainLayout>
                     <Route
                         {...home}
                         render={() => (
                             <Layout breadcrumb={[]}>
-                                <ExampleContents />
+                                <ReactApp />
                             </Layout>
                         )}
                     />

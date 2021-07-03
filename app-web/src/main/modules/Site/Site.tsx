@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import { Route } from 'react-router-dom';
-import ExampleContents from '../../components/ExampleContents';
-import Layout from '../../components/Layout';
-import SiteLayout from '../../components/SiteLayout';
+import Layout from '../../components/layouts/Layout';
+import SiteLayout from '../../components/layouts/SiteLayout';
+import ReactApp from '../../components/miscellaneous/ReactApp';
 import { home } from './routes';
 
 export default function Site(): ReactElement {
@@ -12,7 +12,7 @@ export default function Site(): ReactElement {
                 {...home}
                 render={() => (
                     <Layout breadcrumb={[]}>
-                        <ExampleContents />
+                        <ReactApp />
                     </Layout>
                 )}
             />

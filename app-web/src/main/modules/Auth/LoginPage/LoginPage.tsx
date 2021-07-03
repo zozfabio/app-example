@@ -8,11 +8,11 @@ import { Alert } from '@material-ui/lab';
 import clsx from 'clsx';
 import { FormikValues } from 'formik';
 import React, { ReactElement } from 'react';
-import Form, { Validations } from '../../../components/Form';
-import PasswordField from '../../../components/PasswordField';
-import UsernameField from '../../../components/UsernameField';
-import { LoginInput } from '../../../services/auth/types';
-import { useAuthContext } from '../Provider/hooks';
+import Form, { Validations } from '../../../components/forms/Form';
+import PasswordField from '../../../components/forms/PasswordField';
+import UsernameField from '../../../components/forms/UsernameField';
+import { useAuthContext } from '../../../providers';
+import { LoginInput } from '../../../repositories/auth/types';
 import useStyles from './styles';
 
 const values: LoginInput = {

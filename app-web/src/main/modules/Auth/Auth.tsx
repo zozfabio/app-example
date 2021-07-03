@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import Layout from '../../components/Layout';
-import SiteLayout from '../../components/SiteLayout';
+import Layout from '../../components/layouts/Layout';
+import SiteLayout from '../../components/layouts/SiteLayout';
+import { useAuthContext } from '../../providers';
 import { home } from '../Main/routes';
 import LoginPage from './LoginPage';
 import LogoutHandler from './LogoutHandler';
-import { useAuthContext } from './Provider/hooks';
 import { login, logout } from './routes';
 
 export default function Auth(): ReactElement {
@@ -13,7 +13,7 @@ export default function Auth(): ReactElement {
     return (
         <Switch>
             <Route {...logout} component={LogoutHandler} />
-            {!isAuthenticated ? (
+            {!isAuthenticated() ? (
                 <SiteLayout>
                     <Route
                         {...login}

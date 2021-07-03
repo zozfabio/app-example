@@ -1,13 +1,14 @@
 import React, { ReactElement } from 'react';
-import AppProvider from './AppProvider';
+import AppProvider from '../providers';
+import { AjaxConfig, StreamConfig } from '../repositories';
 import Router from './Router';
-import ServiceConfigurator from './ServiceConfigurator';
 import './styles.css';
 
 export default function App(): ReactElement {
     return (
         <AppProvider>
-            <ServiceConfigurator />
+            <AjaxConfig />
+            <StreamConfig />
             <Router />
         </AppProvider>
     );

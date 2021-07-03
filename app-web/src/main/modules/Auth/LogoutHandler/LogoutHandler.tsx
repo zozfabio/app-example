@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
+import { useAuthContext } from '../../../providers';
 import { home } from '../../Site/routes';
-import { useAuthContext } from '../Provider/hooks';
 import { logout as logoutRoute } from '../routes';
 
 export default function LogoutHandler(): ReactElement {
