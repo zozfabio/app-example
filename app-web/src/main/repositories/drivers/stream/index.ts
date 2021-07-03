@@ -1,6 +1,7 @@
+import { Observable, Subscriber } from 'rxjs';
+import { getBaseUrl } from '../../helpers';
+
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import {Observable, Subscriber} from 'rxjs';
-import {getBaseUrl} from '../../helpers';
 
 const baseUrl = getBaseUrl();
 
