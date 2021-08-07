@@ -6,8 +6,8 @@ import { AuthContext } from './context';
 import { AuthContextType } from './types';
 
 export function useAuthContextFactory(): AuthContextType {
-    const [accessToken, setAccessToken] = useState();
-    const [refreshToken, setRefreshToken] = useState();
+    const [accessToken, setAccessToken] = useState<string>();
+    const [refreshToken, setRefreshToken] = useState<string>();
     const [error, setError] = useState<Error>();
 
     return useMemo(
@@ -17,8 +17,11 @@ export function useAuthContextFactory(): AuthContextType {
                 refreshToken,
                 error,
                 isAuthenticated() {
-                    const token = readAccessToken(accessToken);
-                    return token && !isTokenExpired(token);
+                    if (accessToken) {
+                        const token = readAccessToken(accessToken);
+                        return token && !isTokenExpired(token);
+                    }
+                    return false;
                 },
                 login(input: LoginInput) {
                     login(input).subscribe(
